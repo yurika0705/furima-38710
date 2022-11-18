@@ -1,24 +1,80 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計
 
-Things you may want to cover:
+## users テーブル
 
-* Ruby version
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nick_name          | string | null: false |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| last_name          | string | null: false |
+| first_name         | string | null: false |
+| last_name_kana     | string | null: false |
+| first_name_kana    | string | null: false |
+| birth_date         | date   | null: false |
 
-* System dependencies
+### Association
 
-* Configuration
+- has_many :items
+- belongs_to :card
+- belongs_to :destinations
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+## Cardテーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| card_number        | string | null: false |
+| card_exp_mon       | string | null: false |
+| card_exp_year      | string | null: false |
+| card_cvc           | string | null: false |
 
-* Deployment instructions
+### Association
 
-* ...
+- belongs_to :users
+
+
+
+## Destination テーブル
+
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| post_code          | string | null: false |
+| prefecture         | string | null: false |
+| city               | string | null: false |
+| addresses          | text   | null: false |
+| building           | string | null: false |
+| phone_number       | string | null: false |
+
+### Association
+
+- belongs_to :users
+
+
+
+## Image テーブル
+
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| image              | string | null: false |
+| item_id            | string | null: false |
+
+### Association
+
+- belongs_to :items
+
+
+
+## Categories テーブル
+
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| name               | string | null: false |
+| ancestry           | string | null: false |
+
+### Association
+
+- has_many :items
