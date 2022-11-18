@@ -23,6 +23,25 @@
 
 
 
+## Items テーブル
+
+| Column               | Type   | Options     |
+| -------------------- | ------ | ----------- |
+| item_name            | string | null: false |
+| item_info            | string | null: false |
+| item_sales_status    | string | null: false |
+| shipping_free_status | string | null: false |
+| prefecture           | string | nill: false |
+| price                | int    | null: false |
+
+### Association
+
+- has_many :images
+- belongs_to :users
+- belongs_to :categories
+
+
+
 ## Cardテーブル
 
 | Column             | Type   | Options     |
