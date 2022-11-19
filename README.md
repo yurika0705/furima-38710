@@ -4,50 +4,52 @@
 
 ## users テーブル
 
-| Column             | Type   | Options                   |
-| ------------------ | ------ | ------------------------- |
-| nick_name          | string | null: false               |
-| email              | string | null: false, unique: true |
-| encrypted_password | string | null: false               |
-| last_name          | string | null: false               |
-| first_name         | string | null: false               |
-| last_name_kana     | string | null: false               |
-| first_name_kana    | string | null: false               |
-| birth_date         | date   | null: false               |
+| Column               | Type   | Options                   |
+| -------------------- | ------ | ------------------------- |
+| nick_name            | string | null: false               |
+| email                | string | null: false, unique: true |
+| password             | string | null: false               |
+| password_confimation | string | null: false
+| last_name            | string | null: false               |
+| first_name           | string | null: false               |
+| last_name_kana       | string | null: false               |
+| first_name_kana      | string | null: false               |
+| birth_date           | date   | null: false               |
 
 ### Association
 
 - has_many :items
-- has_many :puchase_record
-- belongs_to :destinations
+- has_many :puchase_records
 
 
 
 ## Items テーブル
 
-| Column               | Type       | Options     |
-| -------------------- | ---------- | ----------- |
-| image                | text       | null: false |
-| item_name            | string     | null: false |
-| item_info            | text       | null: false |
-| item_sales_status    | integer    | null: false |
-| shipping_free_status | integer    | null: false |
-| prefecture           | integer    | null: false |
-| scheduled_delivery   | integer    | null: false |
-| price                | integer    | null: false |
+| Column                  | Type       | Options                        |
+| ----------------------- | ---------- | ------------------------------ |
+| item_name               | string     | null: false                    |
+| item_info               | text       | null: false                    |
+| category_id             | integer    | null: false  foreign_key: true |
+| item_sales_status_id    | integer    | null: false                    |
+| shipping_free_status_id | integer    | null: false                    |
+| prefecture_id           | integer    | null: false                    |
+| scheduled_delivery_id   | integer    | null: false                    |
+| price                   | integer    | null: false                    |
+| user_id                 | integer    | null: false, foreign_key: true |
+| brand_id                | integer    | null: false, foreign_key: true |
+
 
 ### Association
 
 - has_many :images
 - belongs_to :users
-- belongs_to :categories
 - has_one :purchase_record
 
 
 
 
 
-## Destination テーブル
+## Destinations テーブル
 
 | Column             | Type    | Options                        |
 | ------------------ | ------- | ------------------------------ |
@@ -65,40 +67,16 @@
 
 
 
-## Categories テーブル
-
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| name               | string | null: false |
-| ancestry           | string | null: false |
-
-### Association
-
-- has_many :items
-
-
-
-##  Purchase_recordテーブル
+##  Purchase_recordsテーブル
 
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
-| last_name            | string     | null: false, foreign_key: true |
-| first_name           | string     | null: false, foreign_key: true |
-| last_name_kana       | string     | null: false, foreign_key: true |
-| first_name_kana      | string     | null: false, foreign_key: true |
-| birth_date           | date       | null: false, foreign_key: true |
-| image                | text       | null: false, foreign_key: true |
-| item_name            | string     | null: false, foreign_key: true |
-| item_info            | text       | null: false, foreign_key: true |
-| item_sales_status    | integer    | null: false, foreign_key: true |
-| shipping_free_status | integer    | null: false, foreign_key: true |
-| prefecture           | integer    | null: false, foreign_key: true |
-| scheduled_delivery   | integer    | null: false, foreign_key: true |
-| price                | integer    | null: false, foreign_key: true |
-
+| user_id              | string     | null: false, foreign_key: true |
+| item_id              | string     | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :users
-- has_one :items
+- has_many :items
+- belongs_to : destination
