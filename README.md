@@ -40,7 +40,7 @@
 ### Association
 
 - belongs_to :user
-- has_many :purchase_records
+- has_one :purchase_records
 
 
 
@@ -53,14 +53,14 @@
 | post_code          | string     | null: false                     |
 | prefecture_id      | integer    | null: false                     |
 | city               | string     | null: false                     |
-| addresses          | string     | null: false                     |
+| address            | string     | null: false                     |
 | building           | string     |                                 |
 | phone_number       | string     | null: false                     |
 | purchase_record    | references | null: false, foreign_key: true  |
 
 ### Association
 
-- belongs_to :purchase_record
+- has_one :purchase_records
 
 
 
@@ -76,4 +76,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_many :destination
+- has_one :destination
