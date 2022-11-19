@@ -60,7 +60,7 @@
 
 ### Association
 
-- has_one :purchase_records
+- belongs_to :purchase_record
 
 
 
