@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
-  def show
+  before_action :move_to_index, except: [:index]
+  def index
   end
+  
 end
