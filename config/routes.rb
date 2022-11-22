@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
-  root to: 'items#index'
-
-  
-  resources :items
-  
+  get 'items/show'
+ root to: 'items#show'
 end
