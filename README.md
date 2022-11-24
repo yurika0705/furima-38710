@@ -29,7 +29,7 @@
 | item_name               | string     | null: false                    |
 | item_info               | text       | null: false                    |
 | category_id             | integer    | null: false                    |
-| item_sales_status_id    | integer    | null: false                    |
+| sales_status_id         | integer    | null: false                    |
 | shipping_free_status_id | integer    | null: false                    |
 | prefecture_id           | integer    | null: false                    |
 | scheduled_delivery_id   | integer    | null: false                    |

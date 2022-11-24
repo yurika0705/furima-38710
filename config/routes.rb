@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   root to: 'items#index'
 
   
-  resources :items
+  resources :scheduled_deliverys
+  resources :prefectures
+  resources :shipping_free_status
+  resources :categorys
+  resources :sales_status
+  resources :items, only: [:index, :new, :create]
   
 end
