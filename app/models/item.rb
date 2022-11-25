@@ -14,19 +14,19 @@ class Item < ApplicationRecord
   belongs_to :scheduled_delivery
 
   # アクティブストレージとのアソシエーション
-  # has_one_attached :image
+  has_one_attached :image
 
   with_options presence: true do
     validates :image
     validates :item_name
     validates :item_info
-    validates :category_id
-    validates :sales_status_id
-    validates :shipping_free_status_id
-    validates :prefecture_id
-    validates :scheduled_delivery_id
+    validates :category_id, length: { minimum: 1 }
+    validates :sales_status_id, length: { minimum: 1 }
+    validates :shipping_free_status_id, length: { minimum: 1 }
+    validates :prefecture_id, length: { minimum: 1 }
+    validates :scheduled_delivery_id, length: { minimum: 1 }
     # 300円以上かつ9,999,999円以下で、半角英数字でないと入力不可
-    validates :price, inclusion: { in: 300..9_999_999 }, numericality: {only_integer: true}
+    validates :price, inclusion: { in: 300..9_999_999 }, numericality: { only_integer: true }
   end
 
   # ジャンル選択が「ーー」の時は保存不可
