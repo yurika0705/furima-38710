@@ -30,3 +30,4 @@ class ItemsController < ApplicationController
                                  :prefecture_id, :scheduled_delivery_id, :price).merge(user_id: current_user.id)
   end
 end
+
