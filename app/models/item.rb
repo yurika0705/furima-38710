@@ -5,7 +5,6 @@ class Item < ApplicationRecord
   belongs_to :user
   # has_one :purchase_record
   has_one_attached :image
-  # has_many_comments
 
   # アクティブハッシュとのアソシエーション
   belongs_to :category
@@ -18,7 +17,6 @@ class Item < ApplicationRecord
   # has_one_attached :image
 
   with_options presence: true do
-    validates :user_id
     validates :image
     validates :item_name
     validates :item_info
@@ -28,8 +26,7 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :scheduled_delivery_id
     # 300円以上かつ9,999,999円以下で、半角英数字でないと入力不可
-    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
-    # validates :price, format { with: /\A[0-9]+\z/ }
+    validates :price, inclusion: { in: 300..9_999_999 }, numericality: {only_integer: true}
   end
 
   # ジャンル選択が「ーー」の時は保存不可

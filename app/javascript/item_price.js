@@ -7,6 +7,6 @@ window.addEventListener('load', () => {
     // "入力した金額をもとに販売手数料を計算する処理"
     addTaxDom.innerHTML = Math.floor(inputValue * 0.1);
     // 出品から販売手数料を引く処理
-    profitDom.innerHTML = inputValue - addTaxDom.innerHTML
+    profitDom.innerHTML = Math.floor(inputValue - addTaxDom.innerHTML);
   })
 });
