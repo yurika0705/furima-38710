@@ -37,7 +37,7 @@ RSpec.describe Item, type: :model do
       it 'ユーザー登録をしていないと出品できない' do
         @item.user_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
       it '画像がないと登録できない' do
         @item.image = nil
@@ -112,29 +112,28 @@ RSpec.describe Item, type: :model do
       it 'priceが全角文字では登録できない' do
         @item.price = 'てすと'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
       it 'priceが半角英数混合では登録できない' do
         @item.price = 'aa300'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
       it 'priceが半角英語だけでは登録できない' do
         @item.price = 'aaaa'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
       it '価格が300円未満では登録できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
       it '価格が9_999_999円を超えると出品できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
-
     end
   end
 end
