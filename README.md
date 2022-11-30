@@ -46,7 +46,7 @@
 
 
 
-## Destinations テーブル
+## Orders テーブル
 
 | Column             | Type       | Options                         |
 | ------------------ | ---------- | ------------------------------- |
@@ -76,4 +76,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :destination
+- has_one :order

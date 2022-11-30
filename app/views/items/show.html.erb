@@ -8,12 +8,12 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image.variant(resize: '500') ,class:"item-box-img" %>
-    <%# 商品が売れている場合は以下を表示する　%>
-    <%# <% if item.purchase_record.present? %>
-      <%# <div class="sold-out">
+    <%# 商品が売れている場合はsold outを表示 %>
+    <% if @item.purchase_record.present? %>
+      <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
-    <%# <% end %>
+    <% end %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -22,14 +22,18 @@
       <span class="item-postage">
         <%= @item.shipping_free_status.name %>
       </span>
-    <%# ログイン中かつ投稿者であれば以下を表示する %>
+    </div>
     <% if user_signed_in? %>
-      <% if current_user.id == @item.user_id %>
+    <%# 出品者かつ未購入であれば以下を表示する %>
+      <% if current_user.id == @item.user_id && @item.purchase_record.nil? %>
         <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
           <p class="or-text">or</p>
         <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
+        <%# 購入済みであれば売り切れを表示 %>
+      <% elsif @item.purchase_record.present? %>
+        <%= link_to "売り切れました",item_path(@item),class:"disabled-button bold" %>
       <% else %>
-        <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+        <%= link_to "購入画面に進む", item_purchase_records_path(@item.id) ,class:"item-red-btn"%>
       <% end %>
     <% end %>
     <div class="item-explain-box">
