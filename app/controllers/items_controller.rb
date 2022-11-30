@@ -1,9 +1,14 @@
 class ItemsController < ApplicationController
+  # ログインしていないユーザーはログインページに促す
   before_action :authenticate_user!, except: [:index, :show]
+  # 重複処理をまとめる
   before_action :set_item, only: [:edit, :show, :update, :destroy]
 
+  before_action :move_to_index, except: [:index, :show]
+
+
   def index
-    @items = Item.order('created_at DESC')
+    @items = Item.includes(:user).order('created_at DESC')
   end
 
   def new
@@ -23,7 +28,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    return redirect_to root_path if @item.user_id == current_user.id
+    if @item.user_id == current_user.id && @item.purchase_record.nil?
+    else
+      redirect_to root_path
+    end
   end
 
   def update
@@ -35,16 +43,27 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    # ログインしているユーザーと同一であればデータを削除する
     if @item.user_id == current_user.id
       @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
     end
   end
-
+end
   private
 
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def move_to_index
+    @item = Item.find(params[:id])
+  unless @item.user.id == current_user.id || @item.purchase_record != nil
+    redirect_to root_path
+  end
+
 
   def item_params
     params.require(:item).permit(:image, :item_name, :item_info, :category_id, :sales_status_id, :shipping_free_status_id,

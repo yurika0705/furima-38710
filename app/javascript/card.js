@@ -1,5 +1,5 @@
-const pay = () => {
-  Payjp.setPublicKey("process.env.PAYJP_PUBLIC_KEY");  // 公開鍵
+const payjp = () => {
+  Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);  // 公開鍵
   // 入力フォーム全体を変数に定義
   const form = document.getElementById("charge-form");
   // クリックした時に実行
@@ -23,6 +23,7 @@ const pay = () => {
       if (status == 200) {
         // response.idとすることでトークンの値を取得
         const token = response.id;
+        console.log(token)
         // HTMLのinput要素にトークンの値を埋め込み、フォームに追加
         const renderDom = document.getElementById("charge-form");
         // valueは実際に送られる値、nameはその値を示すプロパティ名（params[:name]のように取得できるようになる）を示す。トークンはユーザーに見せる必要がないのでtype属性の値にhiddenを指定。
@@ -43,4 +44,4 @@ const pay = () => {
 };
 
 // payページを読み込んだ時に実行
-window.addEventListener("load", pay);
+window.addEventListener("load", payjp);
