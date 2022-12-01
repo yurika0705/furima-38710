@@ -23,7 +23,6 @@ const payjp = () => {
       if (status == 200) {
         // response.idとすることでトークンの値を取得
         const token = response.id;
-        console.log(token)
         // HTMLのinput要素にトークンの値を埋め込み、フォームに追加
         const renderDom = document.getElementById("charge-form");
         // valueは実際に送られる値、nameはその値を示すプロパティ名（params[:name]のように取得できるようになる）を示す。トークンはユーザーに見せる必要がないのでtype属性の値にhiddenを指定。

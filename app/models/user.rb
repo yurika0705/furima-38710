@@ -21,6 +21,7 @@ class User < ApplicationRecord
   validates :nick_name, presence: true
   validates :birth_date, presence: true
 
+  # アソシエーション
   has_many :items
-  # has_many :puchase_records
+  has_many :puchase_records
 end
