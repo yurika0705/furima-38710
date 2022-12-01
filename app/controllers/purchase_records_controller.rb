@@ -3,12 +3,10 @@ class PurchaseRecordsController < ApplicationController
   before_action :non_purchased_item, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
   def index
-    set_item
     @order_form = OrderForm.new
   end
 
   def create
-    set_item
     @order_form = OrderForm.new(purchase_record_params)
     if @order_form.valid?
       pay_item
