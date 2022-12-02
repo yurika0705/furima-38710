@@ -55,7 +55,7 @@ end
   private
 
   def item_params
-    params.require(:item).permit(:image, :item_name, :item_info, :category_id, :sales_status_id, :shipping_free_status_id, :prefecture_id, :scheduled_delivery_id, :price, :user).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :item_name, :item_info, :category_id, :sales_status_id, :shipping_free_status_id,:prefecture_id, :scheduled_delivery_id, :price).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -71,6 +71,4 @@ end
   def my_item
     @item.user_id == current_user.id
   end
-
-
 end
