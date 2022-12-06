@@ -17,7 +17,6 @@ const payjp = () => {
       exp_year: `20${formData.get("order_form[exp_year]")}`,
       cvc: formData.get("order_form[cvc]"),
     };
-
     // 第一引数は15行目で定義したカード情報。第二関数はアロー関数を用いてPAYJP側からのレスポンス・ステータスコードを受け取った後の処理を定義
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
@@ -35,7 +34,6 @@ const payjp = () => {
       document.getElementById("card-exp-month").removeAttribute("name");
       document.getElementById("card-exp-year").removeAttribute("name");
       document.getElementById("card-cvc").removeAttribute("name");
-
       // フォームの情報をサーバーサイドに送信
       document.getElementById("charge-form").submit();
     });
