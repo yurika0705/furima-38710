@@ -1,3 +1,4 @@
+// pay関数を定義
 const pay = () => {
   // 環境変数から公開鍵を取得
   const payjp = Payjp('process.env.PAYJP_PUBLIC_KEY');
@@ -30,5 +31,5 @@ const pay = () => {
   })
 };
 
-// payページを読み込んだ時に実行
+// payページを読み込んだ時にpayを実行
 window.addEventListener("load", pay);
